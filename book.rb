@@ -16,9 +16,11 @@ class Book
     end
 
     def author
-        Publisher.all.select do |pub|
-            pub.book == self
-        end
+        Publisher.all.map do |pub|
+            if(pub.book == self)
+                pub.author
+            end
+        end.compact
     end
 
     def title

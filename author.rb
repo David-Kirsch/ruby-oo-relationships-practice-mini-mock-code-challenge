@@ -12,13 +12,13 @@ class Author
     end
 
     def book
-        results = []
-        Publisher.all.each do |book|
+    
+        Publisher.all.map do |book|
            if(book.author == self)
-            results << book.book
+            book.book
            end
-        end
-        results
+        end.compact
+
     end
 
     def write_book(book)
