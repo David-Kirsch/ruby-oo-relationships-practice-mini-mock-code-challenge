@@ -1,7 +1,7 @@
 class Author
 
     @@all = []
-
+    attr_accessor :author
     def initialize(author)
         @author = author
         @@all << self
@@ -12,13 +12,17 @@ class Author
     end
 
     def book
-        Book.all.select do |book|
-            book.author == self
+        results = []
+        Publisher.all.each do |book|
+           if(book.author == self)
+            results << book.book
+           end
         end
+        results
     end
 
-    def write_book(title, word_count)
-        Book.new(self, title, word_count)
+    def write_book(book)
+        Publisher.new(self, book)
     end
 
     def total_words
