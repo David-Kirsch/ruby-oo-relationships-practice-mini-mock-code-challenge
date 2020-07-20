@@ -26,6 +26,4 @@ class Book
         book.author
        end
     end
-
-
 end

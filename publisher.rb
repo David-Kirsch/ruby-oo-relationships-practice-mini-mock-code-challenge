@@ -1,6 +1,6 @@
 class Publisher
     @@all = []
-    attr_accessor :author, :book, :word_count
+    attr_accessor :author, :book
     def initialize(author, book)
         @author = author
         @book = book
