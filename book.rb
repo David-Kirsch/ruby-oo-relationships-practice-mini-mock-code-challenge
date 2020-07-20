@@ -3,10 +3,10 @@ require_relative "./author"
 class Book
     @@all = []
 
-    attr_accessor :book_name, :word_count
+    attr_accessor :title, :word_count
 
-    def initialize(book_name, word_count)
-        @book_name = book_name
+    def initialize(title, word_count)
+        @title = title
         @word_count = word_count
         @@all << self
     end
@@ -15,20 +15,17 @@ class Book
         @@all
     end
 
-    def author
-        Publisher.all.map do |pub|
-            if(pub.book == self)
-                pub.author
-            end
-        end.compact
+    def all_authors_by_book
+        Publisher.all.select do |publish|
+            publish.book == self
+        end
     end
 
-    def title
-        @book_name
+    def authors
+       all_authors_by_book.map do |book|
+        book.author
+       end
     end
 
-    def word_count
-        @word_count
-    end
 
 end

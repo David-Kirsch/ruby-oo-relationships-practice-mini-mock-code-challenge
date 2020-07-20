@@ -11,15 +11,16 @@ class Author
         @@all
     end
 
-    def book
-    
-        Publisher.all.map do |book|
-            binding.pry
-           if(book.author == self)
-            book.book
-           end
-        end.compact
+    def all_books_by_self
+        Publisher.all.select do |publish|
+            publish.author == self
+        end
+    end
 
+    def books
+      all_books_by_self.map do |book|
+        book.book
+      end
     end
 
     def write_book(book)
@@ -27,7 +28,7 @@ class Author
     end
 
     def total_words
-        book.sum do |book|
+        books.sum do |book|
             book.word_count
         end
     end
