@@ -1,9 +1,9 @@
 class Author
 
     @@all = []
-    attr_accessor :author
-    def initialize(author)
-        @author = author
+    attr_accessor :name
+    def initialize(name)
+        @name= name
         @@all << self
     end
 
@@ -14,6 +14,7 @@ class Author
     def book
     
         Publisher.all.map do |book|
+            binding.pry
            if(book.author == self)
             book.book
            end
